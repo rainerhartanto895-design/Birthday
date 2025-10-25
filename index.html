@@ -103,16 +103,17 @@
     font-weight: bold;
     color: #ffed75;
     text-shadow: 0 0 15px orange, 0 0 25px yellow;
+    top: -70px; /* dinaikkan sedikit supaya api pas di atas angka */
   }
-  .num1 { left: 38%; top: -60px; }
-  .num8 { right: 38%; top: -60px; }
+  .num1 { left: 38%; }
+  .num8 { right: 38%; }
 
   /* 🔥 Api */
   .flame {
     position: absolute;
     width: clamp(10px, 2vw, 14px);
     height: clamp(16px, 3vh, 22px);
-    top: -30px;
+    top: -30px; /* posisi api pas di atas angka */
     left: 50%;
     transform: translateX(-50%);
     border-radius: 50%;
@@ -150,9 +151,10 @@
 
   /* 📱 Responsiveness */
   @media (max-width: 768px) {
-    .num1, .num8 { top: -50px; }
-    .flame { top: -25px; }
+    #intro h1 { font-size: 2.2em; }
     .cake { margin-top: 3vh; }
+    .number-candle { top: -60px; }
+    .flame { top: -28px; }
     .message-box { margin-top: 20px; }
   }
 
@@ -244,4 +246,3 @@ From: Prince Rainer
   </script>
 </body>
 </html>
-
