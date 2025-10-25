@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday, Angie!</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+    background: radial-gradient(ellipse at bottom, #050014 0%, #000000 100%);
+    color: white;
+  }
+
+  /* 🌟 Bintang aurora */
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 2s infinite ease-in-out;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* ✨ Halaman pembuka */
+  #intro {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #0b001f, #000000);
+    z-index: 10;
+    transition: opacity 1s ease;
+  }
+
+  #intro h1 {
+    font-size: 2.2em;
+    text-shadow: 0 0 15px pink, 0 0 30px purple;
+  }
+
+  #startBtn {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #ff7ac3, #b76fff);
+    border: none;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: transform 0.2s;
+  }
+  #startBtn:hover {
+    transform: scale(1.1);
+  }
+
+  /* 🎂 Halaman utama */
+  #main {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4vh 5vw;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: clamp(1.8em, 3vw, 2.8em);
+    margin-top: 2vh;
+    text-shadow: 0 0 15px pink, 0 0 30px purple;
+  }
+
+  /* 🎂 Kue */
+  .cake {
+    position: relative;
+    width: clamp(180px, 40vw, 280px);
+    height: clamp(120px, 25vh, 200px);
+    margin-top: 3vh;
+  }
+
+  .layer {
+    position: absolute;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .layer.bottom { height: 60px; bottom: 0; background: #7b4b22; }
+  .layer.middle { height: 50px; bottom: 60px; background: #dba86c; }
+  .layer.top { height: 40px; bottom: 110px; background: #f8c8dc; }
+
+  /* 🔥 Lilin angka 18 */
+  .number-candle {
+    position: absolute;
+    font-size: clamp(1.8em, 3vw, 2.8em);
+    font-weight: bold;
+    color: #ffed75;
+    text-shadow: 0 0 15px orange, 0 0 25px yellow;
+    top: -25px; /* naik biar di atas kue */
+  }
+  .num1 { left: 35%; }
+  .num8 { right: 35%; }
+
+  /* Api di atas angka */
+  .flame {
+    position: absolute;
+    width: 14px;
+    height: 20px;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 60%, yellow, orange 70%, red 90%);
+    animation: flicker 0.3s infinite alternate;
+  }
+  @keyframes flicker {
+    from { transform: scale(1) translateY(0); opacity: 0.9; }
+    to { transform: scale(1.1) translateY(-3px); opacity: 0.7; }
+  }
+
+  .instruction {
+    margin-top: 20px;
+    font-style: italic;
+    font-size: clamp(1em, 2vw, 1.2em);
+  }
+
+  /* 💌 Pesan */
+  .message-box {
+    margin-top: 30px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 15px;
+    padding: 20px;
+    width: 85%;
+    max-width: 600px;
+    box-shadow: 0 0 25px rgba(255,192,203,0.4);
+    text-align: left;
+    overflow-wrap: break-word;
+  }
+
+  .message-box p {
+    font-size: clamp(1em, 2vw, 1.1em);
+    line-height: 1.6em;
+    white-space: pre-line;
+  }
+
+  @media (max-height: 600px) {
+    .cake { margin-top: 2vh; }
+    .message-box { margin-top: 15px; }
+  }
+</style>
+</head>
+
+<body>
+  <!-- 🌠 Bintang -->
+  <script>
+    for(let i=0; i<80; i++){
+      let s=document.createElement("div");
+      s.className="star";
+      let size=Math.random()*2+1;
+      s.style.width=s.style.height=size+"px";
+      s.style.top=Math.random()*100+"%";
+      s.style.left=Math.random()*100+"%";
+      s.style.animationDelay=Math.random()*2+"s";
+      document.body.appendChild(s);
+    }
+  </script>
+
+  <!-- 🌈 Halaman Intro -->
+  <div id="intro">
+    <h1>🎉 Happy Birthday, Angie! 🎉</h1>
+    <button id="startBtn">Click to Begin 💖</button>
+  </div>
+
+  <!-- 🎂 Halaman utama -->
+  <div id="main">
+    <h1>🎂 Happy Birthday, Angie! 🎂</h1>
+
+    <div class="cake" id="cake">
+      <div class="layer bottom"></div>
+      <div class="layer middle"></div>
+      <div class="layer top"></div>
+
+      <!-- Lilin angka -->
+      <div class="number-candle num1">
+        1
+        <div class="flame"></div>
+      </div>
+      <div class="number-candle num8">
+        8
+        <div class="flame"></div>
+      </div>
+    </div>
+
+    <p class="instruction">Klik pada kue untuk meniup lilin 🕯️</p>
+
+    <div class="message-box">
+      <p>
+To: one and only princess from Meruya Angie 💖
+
+Selamat ulang tahun yang ke-18 🎂  
+Semoga sehat selalu, panjang umur, dan diberikan kekuatan serta kebahagiaan.  
+Semoga jadi pemimpin Teknik Elektro yang bijaksana dan berkarisma.  
+Hiduplah dengan baik di sana dan bahagialah , aku akan selalu menunggu di sini dengan baik.tungguin deh nanti ada bunga nyampe+hadiahnya  
+
+Terima kasih untuk semua dukungan dan kebaikanmu padaku.  
+I hope we can be best friends as long as we can.  🤍
+
+From: Prince Rainer
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 🚀 Ganti halaman
+    document.getElementById("startBtn").addEventListener("click", () => {
+      const intro = document.getElementById("intro");
+      intro.style.opacity = "0";
+      setTimeout(() => {
+        intro.style.display = "none";
+        document.getElementById("main").style.display = "flex";
+      }, 1000);
+    });
+
+    // 💨 Tiup lilin
+    const cake = document.getElementById("cake");
+    cake.addEventListener("click", () => {
+      document.querySelectorAll(".flame").forEach(f => f.remove());
+      alert("Lilin sudah ditiup! Semoga harapanmu terkabul ✨");
+    });
+  </script>
+</body>
+</html>
