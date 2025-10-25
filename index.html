@@ -5,16 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Happy Birthday, Angie!</title>
 <style>
+  * { box-sizing: border-box; }
   body {
     margin: 0;
-    height: 100vh;
-    overflow-x: hidden;
+    min-height: 100vh;
     font-family: "Poppins", sans-serif;
     background: radial-gradient(ellipse at bottom, #050014 0%, #000000 100%);
     color: white;
+    overflow-x: hidden;
   }
 
-  /* 🌟 Bintang aurora */
+  /* 🌟 Bintang */
   .star {
     position: absolute;
     background: white;
@@ -27,7 +28,7 @@
     50% { opacity: 1; }
   }
 
-  /* ✨ Halaman pembuka */
+  /* ✨ Intro Page */
   #intro {
     position: fixed;
     inset: 0;
@@ -41,8 +42,9 @@
   }
 
   #intro h1 {
-    font-size: 2.2em;
+    font-size: clamp(1.8em, 4vw, 2.5em);
     text-shadow: 0 0 15px pink, 0 0 30px purple;
+    text-align: center;
   }
 
   #startBtn {
@@ -56,11 +58,9 @@
     font-size: 1.1em;
     transition: transform 0.2s;
   }
-  #startBtn:hover {
-    transform: scale(1.1);
-  }
+  #startBtn:hover { transform: scale(1.1); }
 
-  /* 🎂 Halaman utama */
+  /* 🎂 Main Page */
   #main {
     display: none;
     flex-direction: column;
@@ -68,7 +68,6 @@
     text-align: center;
     padding: 4vh 5vw;
     min-height: 100vh;
-    box-sizing: border-box;
   }
 
   h1 {
@@ -77,11 +76,11 @@
     text-shadow: 0 0 15px pink, 0 0 30px purple;
   }
 
-  /* 🎂 Kue */
+  /* 🎂 Cake */
   .cake {
     position: relative;
-    width: clamp(180px, 40vw, 280px);
-    height: clamp(120px, 25vh, 200px);
+    width: clamp(180px, 40vw, 260px);
+    height: clamp(130px, 30vh, 210px);
     margin-top: 3vh;
   }
 
@@ -96,24 +95,24 @@
   .layer.middle { height: 50px; bottom: 60px; background: #dba86c; }
   .layer.top { height: 40px; bottom: 110px; background: #f8c8dc; }
 
-  /* 🔥 Lilin angka 18 */
+  /* 🔥 Angka lilin */
   .number-candle {
     position: absolute;
-    font-size: clamp(1.8em, 3vw, 2.8em);
+    font-size: clamp(2em, 4vw, 3em);
     font-weight: bold;
     color: #ffed75;
     text-shadow: 0 0 15px orange, 0 0 25px yellow;
-    top: -25px; /* naik biar di atas kue */
+    top: -50px;
   }
-  .num1 { left: 35%; }
-  .num8 { right: 35%; }
+  .num1 { left: 38%; }
+  .num8 { right: 38%; }
 
-  /* Api di atas angka */
+  /* 🔥 Api */
   .flame {
     position: absolute;
     width: 14px;
-    height: 20px;
-    top: -20px;
+    height: 22px;
+    top: -25px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 50%;
@@ -138,17 +137,21 @@
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 15px;
     padding: 20px;
-    width: 85%;
-    max-width: 600px;
+    width: min(90%, 600px);
     box-shadow: 0 0 25px rgba(255,192,203,0.4);
     text-align: left;
-    overflow-wrap: break-word;
   }
 
   .message-box p {
     font-size: clamp(1em, 2vw, 1.1em);
     line-height: 1.6em;
     white-space: pre-line;
+  }
+
+  /* 📱 Responsiveness */
+  @media (max-width: 768px) {
+    .cake { margin-top: 4vh; }
+    .number-candle { top: -45px; }
   }
 
   @media (max-height: 600px) {
@@ -208,10 +211,11 @@ To: one and only princess from Meruya Angie 💖
 Selamat ulang tahun yang ke-18 🎂  
 Semoga sehat selalu, panjang umur, dan diberikan kekuatan serta kebahagiaan.  
 Semoga jadi pemimpin Teknik Elektro yang bijaksana dan berkarisma.  
-Hiduplah dengan baik di sana dan bahagialah , aku akan selalu menunggu di sini dengan baik.tungguin deh nanti ada bunga nyampe+hadiahnya  
+Hiduplah dengan baik di sana dan bahagialah , aku akan selalu menunggu di sini dengan baik.  
+Tungguin deh nanti ada bunga nyampe + hadiahnya 🎁  
 
 Terima kasih untuk semua dukungan dan kebaikanmu padaku.  
-I hope we can be best friends as long as we can.  🤍
+I hope we can be best friends as long as we can 🤍  
 
 From: Prince Rainer
       </p>
@@ -219,7 +223,7 @@ From: Prince Rainer
   </div>
 
   <script>
-    // 🚀 Ganti halaman
+    // 🚀 Transisi Halaman
     document.getElementById("startBtn").addEventListener("click", () => {
       const intro = document.getElementById("intro");
       intro.style.opacity = "0";
