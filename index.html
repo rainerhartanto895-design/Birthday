@@ -96,30 +96,49 @@
   .layer.middle { height: 50px; bottom: 60px; background: #dba86c; }
   .layer.top { height: 40px; bottom: 110px; background: #f8c8dc; }
 
-  /* 🔥 Angka lilin */
+  /* 🍒 Hiasan di atas kue */
+  .decoration {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+
+  .cherry {
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle at 30% 30%, #ff6b81, #a30000);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
+  }
+
+  /* 🔥 Lilin angka tunggal */
   .number-candle {
     position: absolute;
+    bottom: 150px; /* nempel di atas kue */
+    left: 50%;
+    transform: translateX(-50%);
     font-size: clamp(2em, 4vw, 3em);
     font-weight: bold;
     color: #ffed75;
     text-shadow: 0 0 15px orange, 0 0 25px yellow;
-    top: -70px; /* dinaikkan sedikit supaya api pas di atas angka */
   }
-  .num1 { left: 38%; }
-  .num8 { right: 38%; }
 
-  /* 🔥 Api */
+  /* 🔥 Api di atas angka */
   .flame {
     position: absolute;
-    width: clamp(10px, 2vw, 14px);
-    height: clamp(16px, 3vh, 22px);
-    top: -30px; /* posisi api pas di atas angka */
+    width: clamp(12px, 2vw, 16px);
+    height: clamp(18px, 3vh, 26px);
+    top: -35px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 50%;
     background: radial-gradient(circle at 50% 60%, yellow, orange 70%, red 90%);
     animation: flicker 0.3s infinite alternate;
   }
+
   @keyframes flicker {
     from { transform: scale(1) translateY(0); opacity: 0.9; }
     to { transform: scale(1.1) translateY(-3px); opacity: 0.7; }
@@ -151,10 +170,9 @@
 
   /* 📱 Responsiveness */
   @media (max-width: 768px) {
-    #intro h1 { font-size: 2.2em; }
-    .cake { margin-top: 3vh; }
-    .number-candle { top: -60px; }
+    .number-candle { bottom: 145px; }
     .flame { top: -28px; }
+    .cake { margin-top: 3vh; }
     .message-box { margin-top: 20px; }
   }
 
@@ -195,13 +213,16 @@
       <div class="layer middle"></div>
       <div class="layer top"></div>
 
-      <!-- Lilin angka -->
-      <div class="number-candle num1">
-        1
-        <div class="flame"></div>
+      <!-- Dekorasi -->
+      <div class="decoration">
+        <div class="cherry"></div>
+        <div class="cherry"></div>
+        <div class="cherry"></div>
       </div>
-      <div class="number-candle num8">
-        8
+
+      <!-- Lilin angka tunggal -->
+      <div class="number-candle">
+        18
         <div class="flame"></div>
       </div>
     </div>
