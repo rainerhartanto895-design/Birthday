@@ -96,48 +96,34 @@
   .layer.middle { height: 50px; bottom: 60px; background: #dba86c; }
   .layer.top { height: 40px; bottom: 110px; background: #f8c8dc; }
 
-  /* 🍒 Hiasan di atas kue */
-  .decoration {
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-  }
-
-  .cherry {
-    width: 12px;
-    height: 12px;
-    background: radial-gradient(circle at 30% 30%, #ff6b81, #a30000);
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
-  }
-
-  /* 🔥 Lilin angka tunggal */
+  /* 🔥 Lilin angka */
   .number-candle {
     position: absolute;
-    bottom: 150px; /* nempel di atas kue */
+    bottom: 150px;
     left: 50%;
     transform: translateX(-50%);
     font-size: clamp(2em, 4vw, 3em);
     font-weight: bold;
     color: #ffed75;
     text-shadow: 0 0 15px orange, 0 0 25px yellow;
+    display: flex;
+    gap: 0.2em;
+    justify-content: center;
   }
 
-  /* 🔥 Api di atas angka */
+  /* 🔥 Api di atas setiap angka */
   .flame {
     position: absolute;
     width: clamp(12px, 2vw, 16px);
     height: clamp(18px, 3vh, 26px);
-    top: -28px; /* DITURUNKAN DIKIT BIAR GA NABRAK */
-    left: 50%;
-    transform: translateX(-50%);
+    top: -28px;
     border-radius: 50%;
     background: radial-gradient(circle at 50% 60%, yellow, orange 70%, red 90%);
     animation: flicker 0.3s infinite alternate;
   }
+
+  .flame.one { left: 48%; transform: translateX(-100%); }
+  .flame.eight { left: 52%; transform: translateX(0%); }
 
   @keyframes flicker {
     from { transform: scale(1) translateY(0); opacity: 0.9; }
@@ -168,10 +154,24 @@
     white-space: pre-line;
   }
 
+  /* 🎉 Confetti */
+  .confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: fall 3s linear forwards;
+    z-index: 5;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
   /* 📱 Responsiveness */
   @media (max-width: 768px) {
     .number-candle { bottom: 145px; }
-    .flame { top: -22px; } /* api lebih dekat angka tapi tetap ga nabrak */
+    .flame { top: -22px; }
     .cake { margin-top: 3vh; }
     .message-box { margin-top: 20px; }
   }
@@ -213,17 +213,11 @@
       <div class="layer middle"></div>
       <div class="layer top"></div>
 
-      <!-- Dekorasi -->
-      <div class="decoration">
-        <div class="cherry"></div>
-        <div class="cherry"></div>
-        <div class="cherry"></div>
-      </div>
-
-      <!-- Lilin angka tunggal -->
+      <!-- Lilin angka 18 -->
       <div class="number-candle">
         18
-        <div class="flame"></div>
+        <div class="flame one"></div>
+        <div class="flame eight"></div>
       </div>
     </div>
 
@@ -258,12 +252,27 @@ From: Prince Rainer
       }, 1000);
     });
 
-    // 💨 Tiup lilin
+    // 💨 Tiup lilin + confetti
     const cake = document.getElementById("cake");
     cake.addEventListener("click", () => {
       document.querySelectorAll(".flame").forEach(f => f.remove());
+      launchConfetti(80);
       alert("Lilin sudah ditiup! Semoga harapanmu terkabul ✨");
     });
+
+    // 🎉 Confetti effect
+    function launchConfetti(count) {
+      for (let i = 0; i < count; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+        c.style.animationDuration = (2 + Math.random() * 3) + "s";
+        c.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+      }
+    }
   </script>
 </body>
 </html>
